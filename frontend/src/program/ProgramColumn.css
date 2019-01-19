@@ -1,0 +1,12 @@
+.program_column {
+    float: left;
+    border-radius: 5px;
+    width: 150px;
+    padding: 10px;
+    background-color: #13B0AC;
+    margin-left: 10px;
+}
+
+.light_blue {
+    background-color: #41D4D1;
+}
