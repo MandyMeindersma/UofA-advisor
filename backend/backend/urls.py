@@ -16,6 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from django.urls import path, include
+
 urlpatterns = [
+    path('api-auth/', include('rest_framework.urls')),
     url(r'^admin/', admin.site.urls),
+    path('api/',include('courses.api.urls'))
+    #path('fetch_courses/', fetch_courses)
 ]

@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import Course
+from courses.models import Course
 
 class CourseSerializer(ModelSerializer):
     class Meta:
