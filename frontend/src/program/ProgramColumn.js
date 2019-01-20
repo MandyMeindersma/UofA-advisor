@@ -23,6 +23,7 @@ class ProgramColumn extends React.Component {
         return(faculty_options);
     }
 
+    // lawl, this is front end hack because back end querying wasnt working
     getFacultyValue() {
         var value = document.getElementById("faculty_dropdown").value;
         fetch("http://localhost:8000/api/department")
@@ -34,6 +35,7 @@ class ProgramColumn extends React.Component {
           });
     }
 
+    // lawl, this is front end hack because back end querying wasnt working
     parseDepartments(text, value) {
         var department_options = []
         for (var i = 0; i < text.length; i++) {
@@ -49,6 +51,7 @@ class ProgramColumn extends React.Component {
         this.setState({ state: this.state });
     }
 
+    // lawl, this is front end hack because back end querying wasnt working
     getDepartmentValue() {
         var value = document.getElementById("department_dropdown").value;
         fetch("http://localhost:8000/api/program")
@@ -60,6 +63,7 @@ class ProgramColumn extends React.Component {
           });
     }
 
+    // lawl, this is front end hack because back end querying wasnt working
     parsePrograms(text, value) {
         var program_options = []
         for (var i = 0; i < text.length; i++) {
