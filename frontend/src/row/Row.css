@@ -10,6 +10,10 @@
     border-radius: 3px;
 }
 
+.number {
+    width: 45px;
+}
+
 .class_dropdown:focus {
     border: 1px solid #C6BAAE;
     cursor: pointer;

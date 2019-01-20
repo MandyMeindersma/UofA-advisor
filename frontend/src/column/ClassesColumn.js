@@ -4,13 +4,13 @@ import Row from './../row/Row.js'
 
 class ClassesColumn extends React.Component {
 
-    ROWS = [
-        'odd row 1',
-        'even row 2',
-        'odd row 3',
-        'even row 4',
-        'odd row 5'
-    ];
+    ROWS = [ 1, 2, 3, 4, 5];
+    //     'odd row 1',
+    //     'even row 2',
+    //     'odd row 3',
+    //     'even row 4',
+    //     'odd row 5'
+    // ];
     rowNumber = 6;
 
     constructor(props) {
@@ -36,7 +36,7 @@ class ClassesColumn extends React.Component {
                 <h2 className='classes_header'>{this.props.name}</h2>
                 <div className='row_wrapper'>
                     {this.ROWS.map(row => (
-                        <Row className={row} key={row} />
+                        <Row className={row} key={row} classNameidThing={row}/>
                     ))}
                 </div>
                 <div className='button_wrapper'>

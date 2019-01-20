@@ -9,7 +9,8 @@ class Row extends React.Component {
     }
 
     getCourseValue() {
-        var value = document.getElementById("class_dropdown").value;
+        var value = document.getElementById(this.props.classNameidThing).value;
+        console.log(value);
         var url = "http://localhost:8000/api/course/?course_name=" + String(value);
         fetch(url)
           .then(res => res.json())
@@ -33,21 +34,23 @@ class Row extends React.Component {
         this.setState({ state: this.state });
     }
 
+    componentDidMount() {
+        this.getCourseValue()
+    }
+
     render() {
         return (
             <div className={this.props.className}>
                 <select className="class_dropdown"
-                    id="class_dropdown"
+                    id={this.props.classNameidThing}
                     onChange={this.getCourseValue}>
                   <option value="CMPUT">CMPUT</option>
                   <option value="MATH">MATH</option>
-                  <option value="PHYS">PHYS</option>
-                  <option value="CHEM">CHEM</option>
-                  <option value="BIOL">BIOL</option>
                   <option value="HIST">HIST</option>
-                  <option value="ASTRO">ASTRO</option>
+                  <option value="ENGL">ENGL</option>
+                  <option value="ANTHR">ANTHR</option>
                 </select>
-                <select className="class_dropdown">
+                <select className="class_dropdown number">
                   {this.number_options}
                 </select>
             </div>
