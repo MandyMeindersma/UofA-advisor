@@ -1,4 +1,16 @@
 .classes_column {
-    text-align: center;
-    padding-left: 150px;
+    padding-left: 225px;
+}
+
+.classes_header {
+    padding-left: 25px;
+    padding-top: 10px;
+}
+
+.check_courses {
+    float: right;
+}
+
+.another_class {
+    float: right;
 }
