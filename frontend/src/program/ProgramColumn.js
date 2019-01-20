@@ -3,16 +3,36 @@ import './ProgramColumn.css';
 
 class ProgramColumn extends React.Component {
 
+    getFacultyOptions() {
+        var faculty_options = []
+        for (var i = 0; i < this.props.faculty.length; i++) {
+            var name = this.props.faculty[i].faculty_name,
+                value = this.props.faculty[i].id;
+            faculty_options.push(<option
+                value={value}
+                key={name}>
+                    {name}
+                </option>)
+        }
+        return(faculty_options);
+    }
+
+    getFacultyValue() {
+        var thing = document.getElementById("faculty_dropdown").value;
+        console.log(thing);
+        //GET /api/department/?q=faculty_id=2 
+    }
+
     render() {
         return (
             <div className={this.props.className}>
                 <h2 className='first'>Faculty</h2>
                 <div className="select_dropdown">
                   <div className="select">
-                    <select name="faculty_dropdown">
-                      <option value="Arts">Arts</option>
-                      <option value="Science">Science</option>
-                      <option value="Business">Business</option>
+                    <select name="faculty_dropdown"
+                        id="faculty_dropdown"
+                        onChange={this.getFacultyValue}>
+                      {this.getFacultyOptions()}
                     </select>
                   </div>
                 </div>

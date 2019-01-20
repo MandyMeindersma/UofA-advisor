@@ -8,16 +8,20 @@ class App extends Component {
 
   constructor(props) {
       super(props);
-      this.getDb = this.getDb.bind(this);
+      this.getFaculty = this.getFaculty.bind(this);
+      this.state = {
+          data: []
+      };
+      this.getFaculty()
   }
 
-  getDb() {
-      fetch("http://localhost:8000/api/")
-        //.then(data => data.json())
-        .then(res => res.text())
-        .then(text => console.log(text))
-        //.then(res => this.setState({data: res.data}));
-    //console.log(this.state.data);
+  getFaculty() {
+      fetch("http://localhost:8000/api/faculty")
+        .then(res => res.json())
+        .then(text => {
+            this.setState({data: text});
+            this.setState({promiseDone: true});
+        });
   }
 
   stateChange() {
@@ -25,12 +29,18 @@ class App extends Component {
       document.getElementById("resultspage").classList.toggle('hide');
   }
 
+  // componentDidMount() {
+  //
+  // }
+
   render() {
+    if(!this.state.promiseDone){return null}
     return (
       <div className="App">
         <div className='inputpage' id='inputpage'>
             <ProgramColumn
-                className='program_column'>
+                className='program_column'
+                faculty={this.state.data}>
             </ProgramColumn>
             <ClassesColumn
                 className='classes_column'
@@ -44,10 +54,6 @@ class App extends Component {
                 stateChange={this.stateChange}>
             </ResultsPage>
         </div>
-        <button onClick={this.getDb}>
-        things
-
-        </button>
       </div>
     );
   }
