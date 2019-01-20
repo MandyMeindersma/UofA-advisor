@@ -6,7 +6,7 @@ class Row extends React.Component {
     render() {
         return (
             <div className={this.props.className}>
-                <select name="class_name_dropdown">
+                <select className="class_dropdown">
                   <option value="CMPUT">CMPUT</option>
                   <option value="MATH">MATH</option>
                   <option value="PHYS">PHYS</option>
@@ -15,7 +15,7 @@ class Row extends React.Component {
                   <option value="HIST">HIST</option>
                   <option value="ASTRO">ASTRO</option>
                 </select>
-                <select name="class_number_dropdown">
+                <select className="class_dropdown">
                   <option value="101">101</option>
                   <option value="174">174</option>
                   <option value="175">175</option>

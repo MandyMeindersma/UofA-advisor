@@ -1,11 +1,15 @@
 .classes_column {
     padding-left: 225px;
-    width: 40%;
+    width: 400px;
+}
+
+.row_wrapper {
+    float: left;
+    margin-left: 40px;
 }
 
 .classes_header {
-    padding-left: 25px;
-    padding-top: 10px;
+    padding-left: 55px;
 }
 
 .a_button {
@@ -16,14 +20,17 @@
     outline: None;
     display: block;
     float: right;
+    width: 130px;
 }
 
 .a_button:hover {
     background-image: linear-gradient(#13B0AC, #41D4D1);
+    cursor: pointer;
 }
 
 .a_button:focus {
     border: 1px solid #13B0AC;
+    cursor: pointer;
 }
 
 .check_courses {

@@ -34,9 +34,11 @@ class ClassesColumn extends React.Component {
             <div className={this.props.className}
                 id='classes_column'>
                 <h2 className='classes_header'>{this.props.name}</h2>
-                {this.ROWS.map(row => (
-                    <Row className={row} key={row} />
-                ))}
+                <div className='row_wrapper'>
+                    {this.ROWS.map(row => (
+                        <Row className={row} key={row} />
+                    ))}
+                </div>
                 <div className='button_wrapper'>
                     <button className='a_button another_class'
                         type="button"

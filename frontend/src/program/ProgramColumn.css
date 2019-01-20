@@ -13,7 +13,7 @@ h2 {
     width: 180px;
     padding: 10px;
     background-color: #13B0AC;
-    margin-left: 10px;
+    margin-left: 40px;
 }
 
 .select_dropdown{
@@ -46,4 +46,9 @@ h2 {
 .select_dropdown .select select:focus {
     box-shadow: 0 0 5px 2px #E8DFD4;
     background-color: #E8DFD4;
+    cursor: pointer;
+}
+
+.select_dropdown .select select:hover {
+    cursor: pointer;
 }

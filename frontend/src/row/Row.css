@@ -2,6 +2,19 @@
     text-align: center;
 }
 
-.odd {
-    /*background-color: #E8DFD4;*/
+.class_dropdown {
+    margin-right: 5px;
+    background-color: #E8DFD4;
+    outline: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.class_dropdown:focus {
+    border: 1px solid #C6BAAE;
+    cursor: pointer;
+}
+
+.class_dropdown:hover {
+    cursor: pointer;
 }
