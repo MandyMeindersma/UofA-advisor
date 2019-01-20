@@ -16,10 +16,6 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from django.urls import path
-
-from courses.views import fetch_courses
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('fetch_courses/', fetch_courses)
 ]
