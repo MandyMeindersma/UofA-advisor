@@ -1,5 +1,6 @@
 .classes_column {
     padding-left: 225px;
+    width: 40%;
 }
 
 .classes_header {
@@ -7,10 +8,34 @@
     padding-top: 10px;
 }
 
-.check_courses {
+.a_button {
+    border: None;
+    border-radius: 5px;
+    background-image: linear-gradient(#41D4D1, #13B0AC);
+    padding: 10px;
+    outline: None;
+    display: block;
     float: right;
 }
 
+.a_button:hover {
+    background-image: linear-gradient(#13B0AC, #41D4D1);
+}
+
+.a_button:focus {
+    border: 1px solid #13B0AC;
+}
+
+.check_courses {
+    float: right;
+    margin-top: 40px;
+}
+
 .another_class {
+    margin-top: 30px;
+}
+
+.button_wrapper {
+    display: inline-block;
     float: right;
 }

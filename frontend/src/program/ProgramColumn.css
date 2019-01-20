@@ -19,7 +19,7 @@ h2 {
 .select_dropdown{
   font-size: 13px;
   padding: 10px 8px 10px 14px;
-  background: #fff;
+  background: #FDF7EE;
   border: 1px solid #41D4D1;
   border-radius: 6px;
   overflow: hidden;
@@ -27,9 +27,7 @@ h2 {
 }
 
 .select_dropdown .select{
-  width: 120%;
-  background:url('./../down-arrow.svg') no-repeat;
-  background-position:80% center;
+  width: 100%;
 }
 
 .select_dropdown .select select{
@@ -43,4 +41,9 @@ h2 {
   z-index: 10;
   font-size: 1em;
   outline: none;
+}
+
+.select_dropdown .select select:focus {
+    box-shadow: 0 0 5px 2px #E8DFD4;
+    background-color: #E8DFD4;
 }
