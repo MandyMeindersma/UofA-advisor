@@ -12,7 +12,7 @@ class CourseListView(ListAPIView):
 
         course_name = self.request.query_params.get('course_name', None)
         if course_name is not None :
-            queryset = queryset.filter(course_name=course_name)
+            queryset = queryset.filter(course_name=course_name.upper())
 
         return queryset
 
