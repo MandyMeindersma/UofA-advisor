@@ -3,6 +3,12 @@ import './ProgramColumn.css';
 
 class ProgramColumn extends React.Component {
 
+    constructor(props) {
+      super(props);
+      this.getFacultyValue = this.getFacultyValue.bind(this);
+      this.getDepartmentValue = this.getDepartmentValue.bind(this);
+    }
+
     getFacultyOptions() {
         var faculty_options = []
         for (var i = 0; i < this.props.faculty.length; i++) {
@@ -18,12 +24,63 @@ class ProgramColumn extends React.Component {
     }
 
     getFacultyValue() {
-        var thing = document.getElementById("faculty_dropdown").value;
-        console.log(thing);
-        //GET /api/department/?q=faculty_id=2 
+        var value = document.getElementById("faculty_dropdown").value;
+        fetch("http://localhost:8000/api/department")
+          .then(res => res.json())
+          .then(text => {
+              this.setState({data: text});
+              this.setState({promiseDone: true});
+              this.parseDepartments(text, value);
+          });
+    }
+
+    parseDepartments(text, value) {
+        var department_options = []
+        for (var i = 0; i < text.length; i++) {
+            if (String(text[i].faculty_id) === String(value)) {
+                department_options.push(<option
+                    value={text[i].id}
+                    key={text[i].department_name}>
+                        {text[i].department_name}
+                    </option>)
+            }
+        }
+        this.department_options = department_options;
+        this.setState({ state: this.state });
+    }
+
+    getDepartmentValue() {
+        var value = document.getElementById("department_dropdown").value;
+        fetch("http://localhost:8000/api/program")
+          .then(res => res.json())
+          .then(text => {
+              this.setState({data: text});
+              this.setState({promiseDone: true});
+              this.parsePrograms(text, value);
+          });
+    }
+
+    parsePrograms(text, value) {
+        var program_options = []
+        for (var i = 0; i < text.length; i++) {
+            if (String(text[i].department_id) === String(value)) {
+                program_options.push(<option
+                    value={text[i].id}
+                    key={text[i].program_name}>
+                        {text[i].program_name}
+                    </option>)
+            }
+        }
+        this.program_options = program_options;
+        this.setState({ state: this.state });
+    }
+
+    componentDidMount() {
+        this.getFacultyValue()
     }
 
     render() {
+
         return (
             <div className={this.props.className}>
                 <h2 className='first'>Faculty</h2>
@@ -39,21 +96,19 @@ class ProgramColumn extends React.Component {
                 <h2>Department</h2>
                 <div className="select_dropdown">
                   <div className="select">
-                    <select name="department_dropdown">
-                      <option value="Psychology">Psychology</option>
-                      <option value="Computing Science">Computing Science</option>
-                      <option value="Physics">Physics</option>
+                    <select name="department_dropdown"
+                        id="department_dropdown"
+                        onChange={this.getDepartmentValue}>
+                      {this.department_options}
                     </select>
                   </div>
                 </div>
                 <h2>Program</h2>
                 <div className="select_dropdown">
                   <div className="select">
-                    <select name="program_dropdown">
-                      <option value="Honours">Honours</option>
-                      <option value="Open Spec">Open Spec</option>
-                      <option value="Software Spec">Software Spec</option>
-                      <option value="General">General</option>
+                    <select name="program_dropdown"
+                        id="program_dropdown">
+                      {this.program_options}
                     </select>
                   </div>
                 </div>
