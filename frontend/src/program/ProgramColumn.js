@@ -3,6 +3,11 @@ import './ProgramColumn.css';
 
 class ProgramColumn extends React.Component {
 
+    constructor(props) {
+      super(props);
+      this.getFacultyValue = this.getFacultyValue.bind(this);
+    }
+
     getFacultyOptions() {
         var faculty_options = []
         for (var i = 0; i < this.props.faculty.length; i++) {
@@ -18,12 +23,33 @@ class ProgramColumn extends React.Component {
     }
 
     getFacultyValue() {
-        var thing = document.getElementById("faculty_dropdown").value;
-        console.log(thing);
-        //GET /api/department/?q=faculty_id=2 
+        var value = document.getElementById("faculty_dropdown").value;
+        fetch("http://localhost:8000/api/department")
+          .then(res => res.json())
+          .then(text => {
+              this.setState({data: text});
+              this.setState({promiseDone: true});
+              this.parseDepartments(text, value);
+          });
+    }
+
+    parseDepartments(text, value) {
+        var department_options = []
+        for (var i = 0; i < text.length; i++) {
+            if (String(text[i].faculty_id) === String(value)) {
+                department_options.push(<option
+                    value={text[i].id}
+                    key={text[i].department_name}>
+                        {text[i].department_name}
+                    </option>)
+            }
+        }
+        this.department_options = department_options;
+        this.setState({ state: this.state });
     }
 
     render() {
+
         return (
             <div className={this.props.className}>
                 <h2 className='first'>Faculty</h2>
@@ -40,9 +66,7 @@ class ProgramColumn extends React.Component {
                 <div className="select_dropdown">
                   <div className="select">
                     <select name="department_dropdown">
-                      <option value="Psychology">Psychology</option>
-                      <option value="Computing Science">Computing Science</option>
-                      <option value="Physics">Physics</option>
+                      {this.department_options}
                     </select>
                   </div>
                 </div>

@@ -29,10 +29,6 @@ class App extends Component {
       document.getElementById("resultspage").classList.toggle('hide');
   }
 
-  // componentDidMount() {
-  //
-  // }
-
   render() {
     if(!this.state.promiseDone){return null}
     return (
