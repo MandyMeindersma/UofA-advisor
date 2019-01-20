@@ -6,6 +6,7 @@ class ProgramColumn extends React.Component {
     constructor(props) {
       super(props);
       this.getFacultyValue = this.getFacultyValue.bind(this);
+      this.getDepartmentValue = this.getDepartmentValue.bind(this);
     }
 
     getFacultyOptions() {
@@ -48,6 +49,36 @@ class ProgramColumn extends React.Component {
         this.setState({ state: this.state });
     }
 
+    getDepartmentValue() {
+        var value = document.getElementById("department_dropdown").value;
+        fetch("http://localhost:8000/api/program")
+          .then(res => res.json())
+          .then(text => {
+              this.setState({data: text});
+              this.setState({promiseDone: true});
+              this.parsePrograms(text, value);
+          });
+    }
+
+    parsePrograms(text, value) {
+        var program_options = []
+        for (var i = 0; i < text.length; i++) {
+            if (String(text[i].department_id) === String(value)) {
+                program_options.push(<option
+                    value={text[i].id}
+                    key={text[i].program_name}>
+                        {text[i].program_name}
+                    </option>)
+            }
+        }
+        this.program_options = program_options;
+        this.setState({ state: this.state });
+    }
+
+    componentDidMount() {
+        this.getFacultyValue()
+    }
+
     render() {
 
         return (
@@ -65,7 +96,9 @@ class ProgramColumn extends React.Component {
                 <h2>Department</h2>
                 <div className="select_dropdown">
                   <div className="select">
-                    <select name="department_dropdown">
+                    <select name="department_dropdown"
+                        id="department_dropdown"
+                        onChange={this.getDepartmentValue}>
                       {this.department_options}
                     </select>
                   </div>
@@ -73,11 +106,9 @@ class ProgramColumn extends React.Component {
                 <h2>Program</h2>
                 <div className="select_dropdown">
                   <div className="select">
-                    <select name="program_dropdown">
-                      <option value="Honours">Honours</option>
-                      <option value="Open Spec">Open Spec</option>
-                      <option value="Software Spec">Software Spec</option>
-                      <option value="General">General</option>
+                    <select name="program_dropdown"
+                        id="program_dropdown">
+                      {this.program_options}
                     </select>
                   </div>
                 </div>
